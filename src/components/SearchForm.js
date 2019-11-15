@@ -49,15 +49,16 @@ export default function SearchForm(props) {
 								// onChange(e.target.value);
 								setFieldValue("name", e.target.value);
 								console.log(props.chars);
-								props.setChars([
-									...props.chars.filter(ch => {
-										return (
-											ch.name
-												.toLowerCase()
-												.indexOf(e.target.value) !== -1
-										);
-									})
-								]);
+								props.setSearch(e.target.value);
+								// props.setChars([
+								// 	...props.chars.filter(ch => {
+								// 		return (
+								// 			ch.name
+								// 				.toLowerCase()
+								// 				.indexOf(e.target.value) !== -1
+								// 		);
+								// 	})
+								// ]);
 							}}
 							onBlur={handleBlur}
 							value={values.name}

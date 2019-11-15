@@ -9,6 +9,8 @@ import {
 	Button
 } from "reactstrap";
 
+import { Link } from "react-router-dom";
+
 export default function CharacterCard(props) {
 	return (
 		<div>
@@ -21,7 +23,24 @@ export default function CharacterCard(props) {
 						Some quick example text to build on the card title and
 						make up the bulk of the card's content.
 					</CardText> */}
-					{/* <Button>Button</Button> */}
+					<Button>
+						<Link
+							to={`/location/${props.char.location.url.match(
+								/\d+/
+							)}`}
+						>
+							Location
+						</Link>
+					</Button>
+					<Button>
+						<Link
+							to={`/episode/${props.char.episode[
+								props.char.episode.length - 1
+							].match(/\d+/)}`}
+						>
+							Last Episode:
+						</Link>
+					</Button>
 				</CardBody>
 			</Card>
 			<br />
