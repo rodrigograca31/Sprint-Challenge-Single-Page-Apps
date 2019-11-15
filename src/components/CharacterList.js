@@ -22,6 +22,8 @@ export default function CharacterList() {
 		axios
 			.get(url)
 			.then(response => {
+				console.log("bnbbb");
+
 				console.log(response);
 				setData(response.data);
 				return response.data.results;
@@ -42,11 +44,30 @@ export default function CharacterList() {
 		//  Important: verify the 2nd `useEffect` parameter: the dependancies array!
 
 		axios
-			.get("https://rickandmortyapi.com/api/character/?name=" + search)
+			.post("https://rickandmortyapi.com/graphql/", {
+				query: `{
+  characters {
+    info {
+	  count
+	  prev
+	  next
+    }
+    results {
+      name
+      id
+      species
+      image
+      location {
+        name
+      }
+    }
+  }
+}`
+			})
 			.then(response => {
 				console.log(response);
-				setData(response.data);
-				return response.data.results;
+				setData(response.data.data.characters);
+				return response.data.characters.results;
 			})
 			.then(chars => {
 				setError("");
